@@ -4,8 +4,9 @@
  */
 ?>
 
-<div class="mt-2 mb-2">
+<div class="mt-2 mb-2 d-flex justify-content-center align-items-center">
     <h1 class="text-center">Liste des utilisateurs</h1>
+    <a href="index.php?component=user&action=new" class="ms-4 btn btn-primary">Nouveau Utilisateur <i class="fa-solid fa-plus"></i></a>
 </div>
 <div class="row">
     <table class="table">

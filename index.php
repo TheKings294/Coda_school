@@ -30,6 +30,8 @@
                         if(file_exists("Controller/$componentName.php")){
                             require "Controller/$componentName.php";
                         }
+                    } else {
+                        require "Controller/dashbord.php";
                     }
                 } else {
                     require "Controller/login.php";
