@@ -32,6 +32,10 @@ if(
 
 }
 
-$users = getAll($pdo);
+$search = isset($_POST['search']) ? $_POST['search'] : null;
+$users = getAll($pdo, $search);
+if(!is_array($users)) {
+    $errors[] = $users;
+}
 
 require "View/users.php";

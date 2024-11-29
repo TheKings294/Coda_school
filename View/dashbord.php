@@ -1,8 +1,12 @@
 <?php
 /**
  * @var array $users
+ * @var string $username
  */
 ?>
+<div class="mt-2">
+    <h1 class="fs-1"><?php echo $username?></h1>
+</div>
 <div class="mt-2">
     <p><i class="fa-solid fa-user text-primary"></i> <?php echo $users['nb'];?></p>
 </div>
@@ -20,7 +24,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Ajouter un Utilisateur</h5>
-                <p class="card-text">Vous permet d'ajouetr des utilisateurs a votre base de donner</p>
+                <p class="card-text">Vous permet d'ajouter des utilisateurs a votre base de donner</p>
                 <a href="index.php?component=user&action=new" class="btn btn-primary">Go New</a>
             </div>
         </div>

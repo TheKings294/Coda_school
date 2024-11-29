@@ -2,7 +2,7 @@
 function getUser(PDO $pdo, int $id): array | string
 {
     try {
-        $state = $pdo->prepare("SELECT `username`, `email`, `enabled` FROM `users` WHERE id = :id");
+        $state = $pdo->prepare("SELECT * FROM `users` WHERE id = :id");
         $state->bindValue(":id", $id, PDO::PARAM_INT);
         $state->execute();
         return $state->fetch();
@@ -13,11 +13,12 @@ function getUser(PDO $pdo, int $id): array | string
 
 function verif_email(PDO $pdo, string $email, $id = null): array | string
 {
+    $query = "SELECT COUNT(*) AS usernb FROM `users` WHERE `email` = :mail";
+    if ($id !== null) {
+        $query .= " AND `id` <> :id";
+    }
+
     try {
-        $query = "SELECT COUNT(*) AS usernb FROM `users` WHERE `email` = :mail";
-        if ($id !== null) {
-            $query .= " AND `id` <> :id";
-        }
         $state = $pdo->prepare($query);
         $state->bindParam(':mail', $email);
         if($id !== null){

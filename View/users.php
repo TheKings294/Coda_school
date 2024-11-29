@@ -24,14 +24,26 @@
                 <td><?php echo $user['id'];?></td>
                 <td><?php echo $user['username'];?></td>
                 <td>
-                    <a href="index.php?component=users&action=toogle_enabled&id=<?php echo $user['id'];?>">
-                        <i class="fa-solid <?php echo ($user['enabled']) ? 'fa-check text-success' : 'fa-xmark text-danger'; ?>"></i>
-                    </a>
+                    <?php if($user['id'] !== $_SESSION['userId']): ?>
+                        <a href="index.php?component=users&action=toogle_enabled&id=<?php echo $user['id'];?>">
+                            <i class="fa-solid <?php echo ($user['enabled']) ? 'fa-check text-success' : 'fa-xmark text-danger'; ?>"></i>
+                        </a>
+                    <?php else: ?>
+                        <i class="fa-solid <?php echo ($user['enabled']) ? 'fa-check text-success' : 'fa-xmark text-danger'; ?>"
+                           title="Vous ne pouvez pas desactiver votre compte">
+
+                        </i>
+                    <?php endif; ?>
                 </td>
                 <td>
-                    <a href="index.php?component=users&action=delete&id=<?php echo $user['id'];?>">
-                        <i class="fa-solid fa-trash text-danger"></i>
-                    </a>
+                    <?php if($user['id'] !== $_SESSION['userId']): ?>
+                        <a
+                                href="index.php?component=users&action=delete&id=<?php echo $user['id'];?>"
+                                onclick="return confirm('Etes vous sur de vouloir suprimer');"
+                        >
+                            <i class="fa-solid fa-trash text-danger"></i>
+                        </a>
+                    <?php endif; ?>
                     <a href="index.php?component=user&action=edit&id=<?php echo $user['id'];?>">
                         <i class="fa-solid fa-pen-to-square text-primary ms-2"></i>
                     </a>

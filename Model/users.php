@@ -1,9 +1,21 @@
 <?php
-function getAll(PDO $pdo): array
+function getAll(PDO $pdo, $search = null): array | string
 {
-    $state = $pdo->prepare("SELECT * FROM `users`");
-    $state->execute();
-    return $state->fetchAll();
+    $query = "SELECT * FROM users";
+    if($search !== null) {
+        $query .= " WHERE username LIKE :search OR id LIKE :search OR email LIKE :search";
+    }
+    try {
+        $state = $pdo->prepare($query);
+        if($search !== null) {
+            $state->bindValue(":search", "%$search%");
+        }
+        $state->execute();
+        return $state->fetchAll();
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+
 }
 
 function toogle_enabled(PDO $pdo, int $user_id): void
