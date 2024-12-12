@@ -18,7 +18,7 @@
         const validLoginBtn = document.querySelector('#valid-login-btn')
         const loginForm = document.querySelector('#login-form')
         validLoginBtn.addEventListener('click', () => {
-            if(!loginForm.checkValidity()) {
+            if(loginForm.checkValidity() == false) {
                 loginForm.reportValidity()
                 return false
             }

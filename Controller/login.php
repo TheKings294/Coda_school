@@ -3,7 +3,7 @@
  * @var PDO $pdo
  */
 require "Model/login.php";
-
+var_dump($_POST);
 if(isset($_POST["login_button"])){
     $username = !empty($_POST['username']) ? $_POST['username'] : null;
     $password = !empty($_POST['password']) ? $_POST['password'] : null;

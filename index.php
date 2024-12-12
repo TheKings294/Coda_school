@@ -8,6 +8,26 @@
         header("Location: index.php");
         exit();
     }
+    if(!empty($_SESSION['CONTENT-TYPE']) &&
+        ($_SERVER['CONTENT-TYPE'] === 'application/json' ||
+            str_starts_with($_SERVER['CONTENT-TYPE'], 'application/x-www-form-urlencoded'))
+    )
+    {
+        if(isset($_SESSION['auth'])){
+            require "_partials/navbar.php";
+            if(isset($_GET["component"])){
+                $componentName = cleanCodeString($_GET["component"]);
+                if(file_exists("Controller/$componentName.php")){
+                    require "Controller/$componentName.php";
+                }
+            } else {
+                require "Controller/dashbord.php";
+            }
+        } else {
+            require "Controller/login.php";
+        }
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
