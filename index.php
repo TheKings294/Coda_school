@@ -8,9 +8,8 @@
         header("Location: index.php");
         exit();
     }
-    if(!empty($_SESSION['CONTENT-TYPE']) &&
-        ($_SERVER['CONTENT-TYPE'] === 'application/json' ||
-            str_starts_with($_SERVER['CONTENT-TYPE'], 'application/x-www-form-urlencoded'))
+    if(!empty($_SERVER['CONTENT_TYPE']) &&
+        ($_SERVER['CONTENT_TYPE'] === 'application/json' || str_starts_with($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded'))
     )
     {
         if(isset($_SESSION['auth'])){
