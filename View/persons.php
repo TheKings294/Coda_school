@@ -8,7 +8,14 @@
     <h1 class="text-center">Liste des personnes</h1>
 </div>
 <div class="row">
-    <table class="table">
+    <div class="col d-flex justify-content-center">
+        <div class="spinner-border text-primary d-none" role="status" id="spinner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <table class="table" id="liste-person">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -23,18 +30,19 @@
         </tr>
         </thead>
         <tbody>
-            <?php foreach($persons as $person):?>
-            <tr>
-                <td><?php echo $person['id']?></td>
-                <td><?php echo $person['last_name']?></td>
-                <td><?php echo $person['first_name']?></td>
-                <td><?php echo $person['address']?></td>
-                <td><?php echo $person['zip_code']?></td>
-                <td><?php echo $person['city']?></td>
-                <td><?php echo $person['phone']?></td>
-                <td><?php echo $person['type'] === 1 ? "Student" : "Teacher";?></td>
-            </tr>
+
         </tbody>
-        <?php endforeach;?>
     </table>
 </div>
+<script src="./asset/js/services/persons.js" type="module"></script>
+<script type="module">
+    import {getPersons} from "./asset/js/services/persons.js";
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        const spinner = document.querySelector('#spinner')
+        spinner.classList.remove('d-none')
+
+        const data = await getPersons()
+        console.log(data)
+    })
+</script>

@@ -1,3 +1,4 @@
+<div id="errors"></div>
 <form method="post" id="login-form">
     <h1 class="text-center">Connexion</h1>
     <div class="mb-3">
@@ -14,15 +15,27 @@
 <script type="module">
     import {login} from "./asset/js/services/login.js";
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded',  () => {
         const validLoginBtn = document.querySelector('#valid-login-btn')
         const loginForm = document.querySelector('#login-form')
-        validLoginBtn.addEventListener('click', () => {
+        const errors = document.querySelector('#errors')
+        validLoginBtn.addEventListener('click', async () => {
             if(loginForm.checkValidity() == false) {
                 loginForm.reportValidity()
                 return false
             }
-            const loginResult = login(loginForm.elements['username'].value, loginForm.elements['password'].value)
+            let loginResult = await login(loginForm.elements['username'].value, loginForm.elements['password'].value)
+            if(loginResult.hasOwnProperty('authentication')) {
+                document.location.href="index.php"
+            } else if (loginResult.hasOwnProperty('errors')) {
+                for(let i = 0; i < loginResult.errors.length; i++) {
+                    const errorDiv = document.createElement('div')
+                    errorDiv.classList.add('alert', 'alert-danger')
+                    errorDiv.setAttribute('role', 'alert')
+                    errorDiv.innerHTML = `${loginResult.errors[i]}`
+                    errors.appendChild(errorDiv)
+                }
+            }
         })
     })
 </script>

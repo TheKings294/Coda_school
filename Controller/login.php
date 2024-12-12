@@ -15,23 +15,24 @@ if(!empty($_SERVER['CONTENT_TYPE']) &&
         $password = cleanCodeString($password);
 
         $user = getUser($username, $pdo);
+        if(is_array($user)){
+            $isMatchPassword = is_array($user) && password_verify($password, $user['password']); //ou en version classique avec un if
 
-        $isMatchPassword = is_array($user) && password_verify($password, $user['password']); //ou en version classique avec un if
-
-        if($isMatchPassword && $user['enabled']){
-            $_SESSION['auth'] = true;
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['userId'] = $user['id'];
-            header("Content-type: application/json");
-            echo json_encode(['authentication' => true]);
-            exit();
-        } elseif (!$user['enabled'] && $isMatchPassword){
-            $errors[] = "Votre compte est desactivé";
+            if($isMatchPassword && $user['enabled'] && is_array($user)){
+                $_SESSION['auth'] = true;
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['userId'] = $user['id'];
+                header("Content-type: application/json");
+                echo json_encode(['authentication' => true]);
+                exit();
+            } elseif (!$user['enabled'] && $isMatchPassword && is_array($user)){
+                $errors[] = "Votre compte est desactivé";
+            } else {
+                $errors[] = "Authentification invalide";
+            }
         } else {
-            $errors[] = "Authentification invalide";
+            $errors[] = "Utilisateur invalide";
         }
-
-
     }
 
     if(!empty($errors)){
