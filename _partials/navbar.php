@@ -26,7 +26,14 @@
                 </li>
             </ul>
             <form class="d-flex" role="search" method="post" action="index.php?component=users">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        name="search"
+                        value="<?php echo isset($_POST['search']) ? cleanCodeString($_POST['search']) : ''; ?>"
+                >
                 <button class="btn btn-outline-primary" type="submit">Search</button>
             </form>
         </div>

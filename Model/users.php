@@ -1,9 +1,12 @@
 <?php
-function getAll(PDO $pdo, $search = null): array | string
+function getAll(PDO $pdo, $search = null, string | null $sortby = null): array | string
 {
     $query = "SELECT * FROM users";
     if($search !== null) {
         $query .= " WHERE username LIKE :search OR id LIKE :search OR email LIKE :search";
+    }
+    if($sortby !== null) {
+        $query .= " ORDER BY $sortby";
     }
     try {
         $state = $pdo->prepare($query);

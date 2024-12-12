@@ -12,9 +12,10 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Username</th>
-            <th scope="col">Actif</th>
+            <th scope="col"><a href="index.php?component=users&sortby=id&sens=asc">#</a></th>
+            <th scope="col"><a href="index.php?component=users&sortby=username&sens=asc">Username</a></th>
+            <th scope="col"><a href="index.php?component=users&sortby=email&sens=asc">Email</a></th>
+            <th scope="col"><a href="index.php?component=users&sortby=enabled&sens=asc">Actif</a></th>
             <th scope="col">Action</th>
         </tr>
         </thead>
@@ -23,6 +24,7 @@
             <tr>
                 <td><?php echo $user['id'];?></td>
                 <td><?php echo $user['username'];?></td>
+                <td><?php echo $user['email'];?></td>
                 <td>
                     <?php if($user['id'] !== $_SESSION['userId']): ?>
                         <a href="index.php?component=users&action=toogle_enabled&id=<?php echo $user['id'];?>">
