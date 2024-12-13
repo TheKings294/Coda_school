@@ -1,4 +1,4 @@
-<?php
+<<?php
 /**
  * @var array $users
  */
@@ -27,13 +27,13 @@
                 <td><?php echo $user['email'];?></td>
                 <td>
                     <?php if($user['id'] !== $_SESSION['userId']): ?>
-                        <a href="index.php?component=users&action=toogle_enabled&id=<?php echo $user['id'];?>">
-                            <i class="fa-solid <?php echo ($user['enabled']) ? 'fa-check text-success' : 'fa-xmark text-danger'; ?>"></i>
+                        <a href="#">
+                            <i class="fa-solid <?php echo ($user['enabled']) ? 'fa-check text-success' : 'fa-xmark text-danger'; ?> icon-link"
+                               data-id="<?php echo $user['id'];?>"></i>
                         </a>
                     <?php else: ?>
                         <i class="fa-solid <?php echo ($user['enabled']) ? 'fa-check text-success' : 'fa-xmark text-danger'; ?>"
                            title="Vous ne pouvez pas desactiver votre compte">
-
                         </i>
                     <?php endif; ?>
                 </td>
@@ -55,3 +55,24 @@
         </tbody>
     </table>
 </div>
+<script src="./asset/js/services/users.js" type="module"></script>
+<script type="module">
+    import {toogleUser} from './asset/js/services/users.js'
+    document.addEventListener('DOMContentLoaded', async () => {
+        const iconLinkToogle = document.querySelectorAll('.icon-link')
+        for (let i = 0; i < iconLinkToogle.length; i++) {
+            iconLinkToogle[i].addEventListener('click', async (e) => {
+                if(iconLinkToogle[i].classList.contains('fa-check')) {
+                    iconLinkToogle[i].classList.remove('fa-check', 'text-success')
+                    iconLinkToogle[i].classList.add('fa-xmark', 'text-danger')
+                    const data = await toogleUser(parseInt(e.target.getAttribute('data-id')))
+                    return false
+                } else {
+                    iconLinkToogle[i].classList.add('fa-check', 'text-success')
+                    iconLinkToogle[i].classList.remove('fa-xmark', 'text-danger')
+                    const data = await toogleUser(parseInt(e.target.getAttribute('data-id')))
+                }
+            })
+        }
+    })
+</script>

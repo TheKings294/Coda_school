@@ -6,3 +6,7 @@ export const getPersons = async (page = 1) => {
     })
     return await res.json()
 }
+
+export const countPage = (total) => {
+    return Math.ceil(total/20)
+}

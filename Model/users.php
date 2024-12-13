@@ -21,11 +21,17 @@ function getAll(PDO $pdo, $search = null, string | null $sortby = null): array |
 
 }
 
-function toogle_enabled(PDO $pdo, int $user_id): void
+function toogle_enabled(PDO $pdo, int $user_id)
 {
-    $state = $pdo->prepare("UPDATE `users` SET `enabled` = NOT `enabled` WHERE `id` = :user_id");
-    $state->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $state->execute();
+    var_dump($user_id);
+    try {
+        $state = $pdo->prepare("UPDATE `users` SET `enabled` = NOT `enabled` WHERE `id` = :user_id");
+        $state->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $state->execute();
+    } catch (Exception $e) {
+        return $e->getMessage();
+    }
+
 }
 
 function delete_user(PDO $pdo, int $user_id)
