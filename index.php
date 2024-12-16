@@ -58,6 +58,7 @@
 
             ?>
         </div>
+        <?php require "_partials/_toast.html"?>
     </main>
     <footer>
 

@@ -6,6 +6,7 @@
 
 <div class="mt-2 mb-2 d-flex justify-content-center align-items-center">
     <h1 class="text-center">Liste des personnes</h1>
+    <a href="index.php?component=person" class="ms-4 btn btn-primary">Nouvelle Personnes <i class="fa-solid fa-plus"></i></a>
 </div>
 <div class="row">
     <div class="col d-flex justify-content-center">
