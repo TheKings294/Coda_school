@@ -18,7 +18,15 @@
     </div>
     <div class="mb-3">
         <label for="inputAddress" class="form-label">Address</label>
-        <input type="text" class="form-control" id="inputAddress" name="address" placeholder="24 rue Jeanne D'arc" required value="<?php echo $res['address'] ?? ''?>" list="datalistOptions">
+        <input
+                type="text"
+                class="form-control"
+                id="inputAddress"
+                name="address"
+                placeholder="24 rue Jeanne D'arc"
+                required
+                value="<?php echo $res['address'] ?? ''?>"
+                list="datalistOptions">
         <datalist id="datalistOptions">
 
         </datalist>
@@ -51,7 +59,15 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" id="btn-add-person">Crée la person</button>
+    <button
+            type="button"
+            class="btn btn-primary"
+            id="btn-add-person"
+            name="<?php echo isset($res) ? 'edit-btn': 'new-btn'?>"
+            data-id="<?php echo isset($res) ? $res['id'] : ''?>"
+    >
+        Crée la person
+    </button>
 </form>
 <script src="./asset/js/components/person.js" type="module"></script>
 <script type="module">

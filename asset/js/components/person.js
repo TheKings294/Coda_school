@@ -1,5 +1,5 @@
-import {autoCompleteAddress, createPerson} from "../services/person.js";
-import {toastUserEnabled} from './chared/toast.js';
+import {autoCompleteAddress, createPerson, updatePerson} from "../services/person.js"
+import {toastUserEnabled} from './chared/toast.js'
 
 export const autoCompleteElement = async () => {
     document.querySelector('#inputAddress').addEventListener('keydown', async () => {
@@ -29,17 +29,30 @@ const printAddress = (data) => {
 export const handelPerson = () => {
     const btn = document.querySelector('#btn-add-person')
 
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
         const form = document.querySelector('#form-person')
         if(!form.checkValidity()) {
             form.reportValidity()
             return false
         }
-        const res = createPerson(form)
-        if(res.success === false) {
-            toastUserEnabled(res.error, 'text-bg-danger')
-        } else {
-            toastUserEnabled('Personnes cree', 'text-bg-success')
+        const btn = document.querySelector('#btn-add-person')
+        if(btn.getAttribute('name') === 'new-btn') {
+            const res = await createPerson(form)
+            if(res.success === false) {
+                toastUserEnabled(res.error, 'text-bg-danger')
+            } else {
+                toastUserEnabled('Personnes cree', 'text-bg-success')
+                form.reset()
+            }
+        } else{
+            const res = await updatePerson(form, btn.getAttribute('data-id'))
+            if(res.success === false) {
+                toastUserEnabled(res.error, 'text-bg-danger')
+            } else {
+                toastUserEnabled('Personnes modifier', 'text-bg-success')
+                form.reset()
+            }
         }
+
     })
 }

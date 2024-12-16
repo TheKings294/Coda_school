@@ -42,7 +42,27 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WIDTH']) &&
 
             break;
         case 'edit':
+            $last_name = isset($_POST['last_name']) ? cleanCodeString($_POST['last_name']) : null;
+            $first_name = isset($_POST['first_name']) ? cleanCodeString($_POST['first_name']) : null;
+            $address = isset($_POST['address']) ? cleanCodeString($_POST['address']) : null;
+            $city = isset($_POST['city']) ? cleanCodeString($_POST['city']) : null;
+            $zip_code = isset($_POST['zip_code']) ? cleanCodeString($_POST['zip_code']) : null;
+            $phone = isset($_POST['phone']) ? cleanCodeString($_POST['phone']) : null;
+            $type = isset($_POST['type']) ? intval(cleanCodeString($_POST['type'])) : null;
+            $id = isset($_GET['id']) ? intval(cleanCodeString($_GET['id'])) : null;
 
+            if(($last_name && $first_name && $address && $city && $zip_code && $phone && $type) !== null) {
+                $res = updatePerson($pdo, $last_name, $first_name, $address, $city, $zip_code, $phone, $type, $id);
+                if($res === true) {
+                    header('Content-type: application/json');
+                    echo json_encode(['success' => true]);
+                    exit();
+                } else {
+                    header('Content-type: application/json');
+                    echo json_encode(['success' => false, 'error' => $res]);
+                    exit();
+                }
+            }
             break;
     }
 }
