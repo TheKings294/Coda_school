@@ -1,4 +1,5 @@
 import {autoCompleteAddress, createPerson} from "../services/person.js";
+import {toastUserEnabled} from './chared/toast.js';
 
 export const autoCompleteElement = async () => {
     document.querySelector('#inputAddress').addEventListener('keydown', async () => {
@@ -34,6 +35,11 @@ export const handelPerson = () => {
             form.reportValidity()
             return false
         }
-        createPerson(form)
+        const res = createPerson(form)
+        if(res.success === false) {
+            toastUserEnabled(res.error, 'text-bg-danger')
+        } else {
+            toastUserEnabled('Personnes cree', 'text-bg-success')
+        }
     })
 }

@@ -6,12 +6,13 @@ export const autoCompleteAddress = async (adressValue) => {
 }
 
 export const createPerson = async (form) => {
-
     const data = new FormData(form)
-    console.log(data)
 
     const res = await fetch(`index.php?component=person&action=new`, {
         method: 'POST',
-        body: data
+        body: data,
+        headers: {
+            'X-Requested-Width': 'XMLHttpRequest'
+        }
     })
 }

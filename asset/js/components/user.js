@@ -1,15 +1,5 @@
 import {toogleUser} from '../services/users.js'
-
-export const toastUserEnabled = (text, level) => {
-    const ToastElement = document.getElementById('mytoast')
-    const toast = new bootstrap.Toast(ToastElement)
-
-        document.querySelector('.toast-body').classList.remove('text-bg-success')
-        document.querySelector('.toast-body').classList.add(level)
-        document.querySelector('.toast-body').innerHTML = text
-        toast.show()
-}
-
+import {toastUserEnabled} from './chared/toast.js'
 export const UpdateUserEnabled = async () => {
     const iconLinkToogle = document.querySelectorAll('.icon-link')
     const spinners = document.querySelectorAll('.spinner-enabled')

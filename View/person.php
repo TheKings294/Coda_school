@@ -45,8 +45,8 @@
                 <label for="type" class="form-label">Type</label>
                 <select class="form-select" aria-label="Selectioner un type" name="type" required>
                     <option <?php echo !isset($res['type']) ? 'selected': ''?>>Selectioner un type</option>
-                    <option value="1" <?php echo $res['type'] === 1 ? 'selected': ''?>>Eleve</option>
-                    <option value="2" <?php echo $res['type'] === 2 ? 'selected': ''?>>Prof</option>
+                    <option value="1" <?php echo (isset($res['type']) && $res['type'] === 1) ? 'selected': ''?>>Eleve</option>
+                    <option value="2" <?php echo (isset($res['type']) && $res['type'] === 2) ? 'selected': ''?>>Prof</option>
                 </select>
             </div>
         </div>
@@ -59,6 +59,6 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         handelPerson()
-        autoCompleteElement()
+        //autoCompleteElement()
     })
 </script>
