@@ -34,9 +34,18 @@
     <div class="col-sm-6 mb-3 mb-sm-0">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Liste Persones</h5>
+                <h5 class="card-title">Liste Personnes</h5>
                 <p class="card-text">Permet de voir la liste de toutes les persones</p>
                 <a href="index.php?component=persons" class="btn btn-primary">Go Persones</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ajouter une Personnes</h5>
+                <p class="card-text">Vous permet d'ajouter des personnes a votre base de donner</p>
+                <a href="index.php?component=person&action=new" class="btn btn-primary">Go New</a>
             </div>
         </div>
     </div>

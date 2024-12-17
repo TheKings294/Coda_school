@@ -4,12 +4,27 @@ import {toastUserEnabled} from './chared/toast.js'
 export const autoCompleteElement = async () => {
     document.querySelector('#inputAddress').addEventListener('keydown', async () => {
         const adressValue = document.querySelector('#inputAddress').value
+        const zipCodeElement = document.querySelector('#zip-code')
+        const cityCodeElement = document.querySelector('#city')
+
         if(adressValue.length > 4) {
             adressValue.replace(' ', '+')
 
             const data = await autoCompleteAddress(adressValue)
-            console.log(data)
             printAddress(data)
+
+            const btnAddress = document.querySelectorAll('.btn-adress')
+
+            for(let i = 0; i < btnAddress.length; i++) {
+                btnAddress[i].addEventListener('click', () => {
+                    const zip_code = e.target.getDataAttribute('data-zip-code')
+                    const city = e.target.getDataAttribute('data-city')
+                    console.log('j ai ete cliquer')
+
+                    zipCodeElement.setAttribute('value', zip_code)
+                    cityCodeElement.setAttribute('value', city)
+                })
+            }
         }
     })
 }
@@ -18,10 +33,14 @@ const printAddress = (data) => {
     const dataList = document.querySelector('#datalistOptions')
     const tabRes = []
 
-    for(let i = 0; i < data.length; i++) {
-        const optionElement = document.createElement('option')
-        optionElement.setAttribute('value', data.features[i].label)
-        tabRes.push(optionElement)
+    for(let i = 0; i < data.features.length; i++) {
+        tabRes.push(`<option 
+                    value="${data.features[i].properties.label}"
+                    class="btn-adress"
+                    data-zip-code="${data.features[i].properties.postcode}" 
+                    data-city="${data.features[i].properties.city}"
+                    >
+                    </option>`)
     }
     dataList.innerHTML = tabRes.join('')
 }

@@ -3,6 +3,10 @@
 * @var PDO $pdo
  */
 require './Model/Person.php';
+require './Model/users.php';
+
+$unLikedUsers = getUnlikedUsers($pdo);
+
 
 if(isset($_GET['action']) &&
     $_GET['action'] == 'edit' &&

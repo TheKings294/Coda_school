@@ -1,3 +1,9 @@
+<?php
+/**
+* @var array $unLikedUsers
+ */
+?>
+
 <div class="row">
     <div class="col">
         <h1 class="text-center">Crée une personne</h1>
@@ -51,10 +57,35 @@
             </div>
             <div class="col">
                 <label for="type" class="form-label">Type</label>
-                <select class="form-select" aria-label="Selectioner un type" name="type" required>
+                <select class="form-select" aria-label="Selectioner un type" name="type" id="type" required>
                     <option <?php echo !isset($res['type']) ? 'selected': ''?>>Selectioner un type</option>
                     <option value="1" <?php echo (isset($res['type']) && $res['type'] === 1) ? 'selected': ''?>>Eleve</option>
                     <option value="2" <?php echo (isset($res['type']) && $res['type'] === 2) ? 'selected': ''?>>Prof</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            <div class="col">
+                <label for="user-link" class="form-label">Liaison Utilisateur</label>
+                <select
+                        class="form-select"
+                        aria-label="Selectioner un utilisateur"
+                        name="user-link"
+                        id="user-link"
+                        required
+                        <?php echo (isset($res) && $res['user_id'] !== null) ? 'disabled': '';?>
+                >
+                    <option selected value="">Selectioner un Utilisateur</option>
+                    <?php foreach ($unLikedUsers as $unLikedUser): ?>
+                        <option
+                                value="<?php echo $unLikedUser['id']?>"
+                                <?php echo (isset($res) && $res['user_id'] === $unLikedUser['id']) ? 'selected': '';?>
+                        >
+                            <?php echo $unLikedUser['username']?>
+                        </option>
+                    <?php endforeach;?>
                 </select>
             </div>
         </div>
@@ -74,7 +105,7 @@
     import {handelPerson, autoCompleteElement} from "./asset/js/components/person.js";
 
     document.addEventListener('DOMContentLoaded', () => {
+        autoCompleteElement()
         handelPerson()
-        //autoCompleteElement()
     })
 </script>
