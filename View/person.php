@@ -82,6 +82,7 @@
                         <option
                                 value="<?php echo $unLikedUser['id']?>"
                                 <?php echo (isset($res) && $res['user_id'] === $unLikedUser['id']) ? 'selected': '';?>
+                                <?php echo ($unLikedUser['user_id'] !== null || $unLikedUser['person_id'] !== null) ? 'disabled' : ''?>
                         >
                             <?php echo $unLikedUser['username']?>
                         </option>
