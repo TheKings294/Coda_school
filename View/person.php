@@ -98,7 +98,7 @@
             name="<?php echo isset($res) ? 'edit-btn': 'new-btn'?>"
             data-id="<?php echo isset($res) ? $res['id'] : ''?>"
     >
-        Crée la person
+        Créer la personne
     </button>
 </form>
 <script src="./asset/js/components/person.js" type="module"></script>
