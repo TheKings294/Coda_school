@@ -80,7 +80,7 @@
                     <option selected value="">Selectioner un utilisateur</option>
                     <?php foreach ($unLikedUsers as $unLikedUser): ?>
                         <option
-                                value="<?php echo $unLikedUser['id']?>"
+                                value="<?php echo $unLikedUser['id'];?>"
                                 <?php echo (isset($res) && $res['user_id'] === $unLikedUser['id']) ? 'selected': '';?>
                                 <?php echo ($unLikedUser['user_id'] !== null || $unLikedUser['person_id'] !== null) ? 'disabled' : ''?>
                         >

@@ -50,7 +50,9 @@ function delete_user(PDO $pdo, int $user_id)
 function getUnlikedUsers(PDO $pdo): array | string
 {
     try {
-        $stmt = $pdo->prepare("SELECT `users`.`id`, `users`.`username`, up.* FROM `users` LEFT JOIN `user_person` AS up ON up.`user_id` = `users`.`id`ORDER BY `users`.`username`");
+        $stmt = $pdo->prepare("SELECT `users`.id, `users`.username, up.person_id, up.user_id FROM `users`
+                                     LEFT JOIN `user_person` AS up ON up.`user_id` = `users`.`id`
+                                      ORDER BY `users`.`username`");
         $stmt->execute();
         return $stmt->fetchAll();
     } catch (Exception $e) {
