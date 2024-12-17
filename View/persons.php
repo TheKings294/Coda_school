@@ -6,12 +6,12 @@
 
 <div class="mt-2 mb-2 d-flex justify-content-center align-items-center">
     <h1 class="text-center">Liste des personnes</h1>
-    <a href="index.php?component=person&action=new" class="ms-4 btn btn-primary">Nouvelle Personnes <i class="fa-solid fa-plus"></i></a>
+    <a href="index.php?component=person&action=new" class="ms-4 btn btn-primary">Nouvelle personne<i class="fa-solid fa-plus"></i></a>
 </div>
 <div class="row">
     <div class="col d-flex justify-content-center">
         <div class="spinner-border text-primary d-none" role="status" id="spinner">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">Chargement...</span>
         </div>
     </div>
 </div>
@@ -20,12 +20,12 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Lastname</th>
-            <th scope="col">Firstname</th>
-            <th scope="col">Address</th>
-            <th scope="col">Zip_code</th>
+            <th scope="col">Nom de famille</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Addresse</th>
+            <th scope="col">Zip code</th>
             <th scope="col">City</th>
-            <th scope="col">Phone</th>
+            <th scope="col">Téléphone</th>
             <th scope="col">Type</th>
             <th scope="col">Action</th>
         </tr>

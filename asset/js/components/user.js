@@ -12,7 +12,7 @@ export const UpdateUserEnabled = async () => {
                 if(data.hasOwnProperty('success')) {
                     iconLinkToogle[i].classList.remove('fa-check', 'text-success')
                     iconLinkToogle[i].classList.add('fa-xmark', 'text-danger')
-                    toastUserEnabled('Stutus utilisateur changer', 'text-bg-success')
+                    toastUserEnabled('Status utilisateur mit à jour', 'text-bg-success')
                 } else {
                     toastUserEnabled(data.error, 'text-bg-danger')
                 }
@@ -21,7 +21,7 @@ export const UpdateUserEnabled = async () => {
                 if(data.hasOwnProperty('success')) {
                     iconLinkToogle[i].classList.add('fa-check', 'text-success')
                     iconLinkToogle[i].classList.remove('fa-xmark', 'text-danger')
-                    toastUserEnabled('Stutus utilisateur changer', 'text-bg-success')
+                    toastUserEnabled('Status utilisateur mit à jour', 'text-bg-success')
                 } else {
                     toastUserEnabled(data.error, 'text-bg-danger')
                 }

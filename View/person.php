@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="mb-3">
-        <label for="inputAddress" class="form-label">Address</label>
+        <label for="inputAddress" class="form-label">Addresse</label>
         <input
                 type="text"
                 class="form-control"
@@ -59,8 +59,8 @@
                 <label for="type" class="form-label">Type</label>
                 <select class="form-select" aria-label="Selectioner un type" name="type" id="type" required>
                     <option <?php echo !isset($res['type']) ? 'selected': ''?>>Selectioner un type</option>
-                    <option value="1" <?php echo (isset($res['type']) && $res['type'] === 1) ? 'selected': ''?>>Eleve</option>
-                    <option value="2" <?php echo (isset($res['type']) && $res['type'] === 2) ? 'selected': ''?>>Prof</option>
+                    <option value="1" <?php echo (isset($res['type']) && $res['type'] === 1) ? 'selected': ''?>>Elève</option>
+                    <option value="2" <?php echo (isset($res['type']) && $res['type'] === 2) ? 'selected': ''?>>Proffesseur</option>
                 </select>
             </div>
         </div>
@@ -77,7 +77,7 @@
                         required
                         <?php echo (isset($res) && $res['user_id'] !== null) ? 'disabled': '';?>
                 >
-                    <option selected value="">Selectioner un Utilisateur</option>
+                    <option selected value="">Selectioner un utilisateur</option>
                     <?php foreach ($unLikedUsers as $unLikedUser): ?>
                         <option
                                 value="<?php echo $unLikedUser['id']?>"

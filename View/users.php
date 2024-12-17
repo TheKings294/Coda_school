@@ -6,14 +6,14 @@
 
 <div class="mt-2 mb-2 d-flex justify-content-center align-items-center">
     <h1 class="text-center">Liste des utilisateurs</h1>
-    <a href="index.php?component=user&action=new" class="ms-4 btn btn-primary">Nouveau Utilisateur <i class="fa-solid fa-plus"></i></a>
+    <a href="index.php?component=user&action=new" class="ms-4 btn btn-primary">Nouvelle utilisateur<i class="fa-solid fa-plus"></i></a>
 </div>
 <div class="row">
     <table class="table">
         <thead>
         <tr>
             <th scope="col"><a href="index.php?component=users&sortby=id&sens=asc">#</a></th>
-            <th scope="col"><a href="index.php?component=users&sortby=username&sens=asc">Username</a></th>
+            <th scope="col"><a href="index.php?component=users&sortby=username&sens=asc">Pseudonyme</a></th>
             <th scope="col"><a href="index.php?component=users&sortby=email&sens=asc">Email</a></th>
             <th scope="col"><a href="index.php?component=users&sortby=enabled&sens=asc">Actif</a></th>
             <th scope="col">Action</th>
@@ -37,7 +37,7 @@
                         </i>
                     <?php endif; ?>
                     <div class="spinner-border spinner-border-sm d-none spinner-enabled text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                        <span class="visually-hidden">Chargement...</span>
                     </div>
                 </td>
                 <td>
