@@ -7,21 +7,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link" aria-current="page" href="index.php">Acceuil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?component=users">Liste des utilisateurs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?component=persons">Liste des persons</a>
+                    <a class="nav-link" href="index.php?component=persons">Liste des personnes</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-user"></i> <?php echo $_SESSION['username'];?>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Triste</a></li>
+                        <li><a class="dropdown-item" href="#">Je veux mourir</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="index.php?disconect=true">Déconexion</a></li>
                     </ul>
@@ -37,7 +37,7 @@
                         name="search"
                         value="<?php echo isset($_POST['search']) ? cleanCodeString($_POST['search']) : ''; ?>"
                 >
-                <button class="btn btn-outline-primary" type="submit">Search</button>
+                <button class="btn btn-outline-primary" type="submit">Rechercher</button>
             </form>
         </div>
     </div>
