@@ -24,7 +24,7 @@
             class="form-check-input"
             id="enable"
             name="enable"
-            <?php echo ($user['id'] === $_SESSION['userId']) ? 'disabled' : null; ?>
+            <?php echo (isset($user['id']) && $user['id'] === $_SESSION['userId']) ? 'disabled' : null; ?>
             <?php echo isset($user['enabled']) && $user['enabled'] ? 'checked' : null; ?>>
     </div>
     <button

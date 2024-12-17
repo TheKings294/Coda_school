@@ -22,10 +22,10 @@ if(
 }
 
 $search = isset($_POST['search']) ? cleanCodeString($_POST['search']) : null;
-$sortby = isset($_GET['sortby']) ? cleanCodeString($_GET['sortby']) : null;
+//$sortby = isset($_GET['sortby']) ? cleanCodeString($_GET['sortby']) : null;
 //$sens = isset($_GET['sens']) ? cleanCodeString($_GET['sens']) : null;
 //$sens = $sens === 'asc' ? 'desc' : 'asc';
-$users = getAll($pdo, $search, $sortby);
+$users = getAll($pdo, $search);
 if(!is_array($users)) {
     $errors[] = $users;
 }
