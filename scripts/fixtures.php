@@ -6,7 +6,7 @@ require './vendor/autoload.php';
 //require './Includes/database.php';
 
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=coda_school_new', 'root', 'root');
+    $pdo = new PDO('mysql:host=127.0.0.1;dbname=coda_school_new;port=8889', 'root', 'root');
 } catch (Exception $e) {
     echo "BDD conect error : {$e->getMessage()}";
 }
