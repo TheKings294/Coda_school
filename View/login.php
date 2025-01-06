@@ -9,6 +9,9 @@
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" name="password">
     </div>
+    <div class="mb-3">
+        <a href="index.php?component=send_mail_forgot">Mot de passe oublier</a>
+    </div>
     <button type="button" class="btn btn-primary" name="login_button" id="valid-login-btn">Submit</button>
 </form>
 <script src="./asset/js/services/login.js" type="module"></script>

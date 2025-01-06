@@ -23,6 +23,8 @@
             } else {
                 require "Controller/dashbord.php";
             }
+        } elseif(isset($_GET["component"]) && $_GET["component"] === "send_mail_forgot") {
+            require "Controller/send_mail_forgot.php";
         } else {
             require "Controller/login.php";
         }
@@ -53,6 +55,8 @@
                     } else {
                         require "Controller/dashbord.php";
                     }
+                } elseif (isset($_GET['component']) && $_GET['component'] === "send_mail_forgot") {
+                    require "Controller/send_mail_forgot.php";
                 } else {
                     require "Controller/login.php";
                 }
