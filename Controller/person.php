@@ -33,7 +33,19 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WIDTH']) &&
             $user_link = isset($_POST['user-link']) ? cleanCodeString($_POST['user-link']) : null;
 
             if(($last_name && $first_name && $address && $city && $zip_code && $phone && $type) !== null) {
-                $res = setPerson($pdo, $last_name, $first_name, $address, $city, $zip_code, $phone, $type);
+                $uniqFileNameFinal = null;
+                if (!empty($_FILES['image']['name'])) {
+                    var_dump($_FILES);
+                    $tmpName = $_FILES['image']['tmp_name'];
+                    $fileNmae = $_FILES['image']['name'];
+                    $ext = pathinfo($fileNmae, PATHINFO_EXTENSION);
+                    $uniqFileName = uniqid();
+                    $uniqFileNameFinal = $uniqFileName . '.' . $ext;
+
+                    move_uploaded_file($tmpName, $_SERVER['DOCUMENT_ROOT'] . UPLOAD_DIRECTORY . $uniqFileNameFinal);
+                }
+
+                $res = setPerson($pdo, $last_name, $first_name, $address, $city, $zip_code, $phone, $type, $uniqFileNameFinal);
                 if(!is_numeric($res)) {
                     header('Content-type: application/json');
                     echo json_encode(['success' => false, 'error' => $res]);
@@ -106,6 +118,41 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WIDTH']) &&
                     echo json_encode(['success' => true]);
                     exit();
                 }
+            }
+            break;
+        case 'delete_img':
+            $id = isset($_GET['id']) ? intval(cleanCodeString($_GET['id'])) : null;
+            if(!is_int($id) || $id === null) {
+                header('Content-type: application/json');
+                echo json_encode(['error' => 'id incorrect']);
+                exit();
+            }
+
+            $person = getPerson($pdo, $id);
+            if(is_string($person) || empty($person)) {
+                header('Content-type: application/json');
+                echo json_encode(['error' => 'Impossible de selectioner la personne']);
+                exit();
+            }
+
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . UPLOAD_DIRECTORY . $person['image'])) {
+                try {
+                    unlink($_SERVER['DOCUMENT_ROOT'] . UPLOAD_DIRECTORY . $person['image']);
+                } catch (Exception $e) {
+                    header('Content-type: application/json');
+                    echo json_encode(['error' => 'Impossible de supprimer la photo'.$e->getMessage()]);
+                    exit();
+                }
+
+                $res = resetImage($pdo, $id);
+                if(is_string($res)) {
+                    header('Content-type: application/json');
+                    echo json_encode(['error' => $res]);
+                    exit();
+                }
+                header('Content-type: application/json');
+                echo json_encode(['success' => true]);
+                exit();
             }
             break;
     }
